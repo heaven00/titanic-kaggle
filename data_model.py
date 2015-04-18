@@ -8,8 +8,9 @@ class Data(object):
     def __init__(self, filepath):
         """Initialize the class with file path to the dataset"""
         self.filepath = filepath
-        self.data = self.preprocess(read_data(filepath))
-        self.dataset = self._makedataset()
+        self.data = self.read_data(filepath)
+        self._preprocess()
+        self.dataset = self.makedataset()
 
     def read_data(self, filepath):
         """read the data file."""
@@ -18,9 +19,10 @@ class Data(object):
         else:
             raise Exception('Please change the function according to file extension')        
 
-    def preprocess(self):
+    def _preprocess(self):
         """preprocess the data"""
-        return self.data
+        # add the preprocessing functionality here
+        pass
 
     def train(self):
         """Return a trainset from the data"""
@@ -31,7 +33,7 @@ class Data(object):
         """Return validation set from the data."""
         return self.dataset.validation
 
-    def _makedataset(self):
+    def makedataset(self):
         """Slpit the data into validation and train set and return a tuple"""
         dataset = namedtuple('dataset', ['train', 'validation'])
         data = self.data
