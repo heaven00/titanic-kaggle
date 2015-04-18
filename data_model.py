@@ -37,7 +37,7 @@ class Data(object):
         """Slpit the data into validation and train set and return a tuple"""
         dataset = namedtuple('dataset', ['train', 'validation'])
         data = self.data
-        eighty = int(len(data.index))
+        eighty = int(len(data.index) * 0.8)
         train = data[:eighty]
         validation = data[eighty:]
         return dataset._make([train, validation])
