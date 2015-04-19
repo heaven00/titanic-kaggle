@@ -9,6 +9,7 @@ class Data(object):
         """Initialize the class with file path to the dataset"""
         self.filepath = filepath
         self.data = self.read_data(filepath)
+        self.raw_data = self.get_rawdata()
         self._preprocess()
         self.dataset = self.makedataset()
 
@@ -42,6 +43,9 @@ class Data(object):
         validation = data[eighty:]
         return dataset._make([train, validation])
         
+    def get_rawdata(self):
+        """Return the raw data without any processing"""
+        return self.read_data(self.filepath)
         
 if __name__ == "__main__":
     d = Data('data/train.csv')
